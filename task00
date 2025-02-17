@@ -1,0 +1,38 @@
+classDiagram
+    class PresentationLayer {
+        <<Interface>>
+        +registerUser()
+        +createPlace()
+        +submitReview()
+        +listPlaces()
+    }
+
+    class BusinessLogicLayer {
+        +User
+        +Place
+        +Review
+        +Amenity
+        +UserService
+        +PlaceService
+        +ReviewService
+    }
+
+    class PersistenceLayer {
+        +UserRepository
+        +PlaceRepository
+        +ReviewRepository
+        +AmenityRepository
+    }
+
+    class Facade {
+        <<Interface>>
+        +registerUser()
+        +createPlace()
+        +submitReview()
+    }
+
+    PresentationLayer --> Facade : Utilise
+    Facade --> BusinessLogicLayer : Simplifie l'interaction
+    BusinessLogicLayer --> PersistenceLayer : Requêtes de base de données (CRUD)
+    BusinessLogicLayer ..> PersistenceLayer : Operations CRUD sur entités
+
