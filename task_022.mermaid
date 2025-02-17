@@ -1,0 +1,13 @@
+%% 2Création d'un lieu
+participant User
+participant API
+participant BusinessLogic
+participant Database
+User->>API: Envoi des informations sur le lieu
+API->>BusinessLogic: Valider les informations du lieu
+BusinessLogic->>Database: Vérifier les données (disponibilité, etc.)
+Database-->>BusinessLogic: Réponse de validation
+BusinessLogic->>Database: Sauvegarder le lieu
+Database-->>BusinessLogic: Confirmation de la sauvegarde
+BusinessLogic-->>API: Retourner la réponse (succès/échec)
+API-->>User: Réponse de création de lieu réussie ou échec

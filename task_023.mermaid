@@ -1,0 +1,13 @@
+%% 3Soumission d'un avis
+participant User
+participant API
+participant BusinessLogic
+participant Database
+User->>API: Soumettre un avis pour un lieu
+API->>BusinessLogic: Valider le contenu de l'avis
+BusinessLogic->>Database: Vérifier l'existence du lieu
+Database-->>BusinessLogic: Réponse de vérification
+BusinessLogic->>Database: Sauvegarder l'avis
+Database-->>BusinessLogic: Confirmation de la sauvegarde
+BusinessLogic-->>API: Retourner la réponse (succès/échec)
+API--
