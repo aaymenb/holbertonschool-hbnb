@@ -1,4 +1,4 @@
-@startuml
+classDiagram
 class User {
     + uuid: UUID
     + first_name: str
@@ -11,14 +11,13 @@ class User {
     + update_profile(): void
 }
 class Place {
-    + uuid: UUID
-    + name: str
-    + description: str
-    + address: str
-    + latitude: float
-    + longitude: float
-    + created_at: str
-    + updated_at: str
+    name: str
+    description: str
+    adress: str
+    latitude: float
+    longitude: float
+    created_at: str
+    updated_at: str
 }
 class Review {
     + uuid: UUID
@@ -33,7 +32,6 @@ class Amenity {
     + created_at: str
     + updated_at: str
 }
-User "1" --> "*" Place : Owns("Possède")
-Place "1" --> "*" Review : Receives("Reçoit")
-Place "1" --> "*" Amenity : Has("a")
-@enduml
+User "1" --> "* Plusieur Place ou 0 *" Place : Owns("Posséde")
+Place "1" --> "* Plusieur Review ou 0*" Review : Receives("Reçoit")
+Place "1" --> "* Plusieur Amenity ou 0" Amenity : Has("a")
