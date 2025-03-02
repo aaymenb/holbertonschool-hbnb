@@ -16,5 +16,5 @@ class BaseModel:
 
     def save(self):
         self.updated_at = datetime.now()
-        # Code pour sauvegarder dans la persistance (DB ou autre)
+        #Code pour sauvegarder dans la persistance (DB ou autre)
 
