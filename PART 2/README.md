@@ -59,7 +59,6 @@ Pour lancer l'application :
 python -m flask run
 ```
 
-L'API sera accessible à l'adresse : http://localhost:5000
 
 ## Documentation API
 
