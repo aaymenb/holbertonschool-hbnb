@@ -326,7 +326,7 @@ Pour toute question ou problème :
 
 ### 1. Sécurité
 ```python
-# Exemple de hachage de mot de passe
+# Exempl de hachage de mot de passe
 from werkzeug.security import generate_password_hash, check_password_hash
 
 # Hachage
