@@ -1,0 +1,55 @@
+1. Les entités
+Les entités représentent les tables de la base de données et leurs attributs. Elles sont définies dans le diagramme avec des informations comme les clés primaires (PK) et les clés étrangères (FK).
+
+1.1 UTILISATEUR (USER)
+id : La clé primaire (PK) de l'entité UTILISATEUR.
+nom : Le nom de l'utilisateur.
+email : L'email de l'utilisateur.
+1.2 LIEU (PLACE)
+id : La clé primaire (PK) de l'entité LIEU.
+nom : Le nom du lieu (ex : appartement, maison, etc.).
+description : Une description du lieu (ex : équipements, caractéristiques, etc.).
+emplacement : L'adresse ou l'emplacement du lieu.
+1.3 COMMENTAIRE (REVIEW)
+id : La clé primaire (PK) de l'entité COMMENTAIRE.
+contenu : Le contenu du commentaire ou de l'avis laissé par l'utilisateur.
+date : La date du commentaire.
+utilisateur_id : Clé étrangère (FK) faisant référence à l'utilisateur qui a écrit le commentaire.
+lieu_id : Clé étrangère (FK) faisant référence au lieu concerné par le commentaire.
+1.4 AMENITE (AMENITY)
+id : La clé primaire (PK) de l'entité AMENITE.
+nom : Le nom de l'amenité (par exemple : piscine, Wi-Fi, cuisine équipée, etc.).
+1.5 LIEU_AMENITE (PLACE_AMENITY)
+C'est une table de jonction qui lie LIEU et AMENITE dans une relation de plusieurs-à-plusieurs. Elle contient les clés étrangères des deux entités :
+
+lieu_id : Clé étrangère (FK) faisant référence à l'entité LIEU.
+amenite_id : Clé étrangère (FK) faisant référence à l'entité AMENITE.
+2. Les relations
+Les relations décrivent comment les entités sont connectées entre elles.
+
+2.1 Relation entre UTILISATEUR et COMMENTAIRE
+UTILISATEUR "écrit" plusieurs COMMENTAIRES.
+Relation un-à-plusieurs (1:N) : Un utilisateur peut écrire plusieurs commentaires, mais chaque commentaire est rédigé par un seul utilisateur.
+Dans le diagramme, cela est représenté par la relation UTILISATEUR ||--o| COMMENTAIRE : écrit.
+2.2 Relation entre LIEU et COMMENTAIRE
+LIEU "a" plusieurs COMMENTAIRES.
+Relation un-à-plusieurs (1:N) : Un lieu peut recevoir plusieurs commentaires, mais chaque commentaire est associé à un seul lieu.
+Cela est représenté par la relation LIEU ||--o| COMMENTAIRE : a.
+2.3 Relation entre LIEU et LIEU_AMENITE
+LIEU "contient" plusieurs AMENITES à travers la table LIEU_AMENITE.
+
+Relation plusieurs-à-plusieurs (N:M) : Un lieu peut avoir plusieurs amenités, et chaque amenité peut être liée à plusieurs lieux. Cette relation est gérée par la table de jonction LIEU_AMENITE.
+Cela est représenté par la relation LIEU ||--o| LIEU_AMENITE : contient.
+
+2.4 Relation entre AMENITE et LIEU_AMENITE
+AMENITE "est disponible dans" plusieurs LIEUX à travers la table LIEU_AMENITE.
+
+Relation plusieurs-à-plusieurs (N:M) : Une amenité peut être présente dans plusieurs lieux, et un lieu peut offrir plusieurs amenités. Cette relation est également gérée par la table LIEU_AMENITE.
+Cela est représenté par la relation AMENITE ||--o| LIEU_AMENITE : est_disponible_dans.
+
+3. Résumé du diagramme ER
+Le diagramme présente cinq entités principales (UTILISATEUR, LIEU, COMMENTAIRE, AMENITE, LIEU_AMENITE) et décrit leurs relations :
+
+Un utilisateur peut écrire plusieurs commentaires.
+Un lieu peut recevoir plusieurs commentaires.
+Un lieu peut avoir plusieurs amenités via la table LIEU_AMENITE, qui établit une relation plusieurs-à-plusieurs entre LIEU et AMENITE.
