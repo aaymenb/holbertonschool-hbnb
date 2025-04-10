@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBNB - Détails du lieu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/png" href="images/icon.png">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.png" alt="HBNB Logo">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Accueil</a></li>
+                <li><a href="login.html" id="login-link">Connexion</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="place-details" class="place-details">
+            <!-- Les détails du lieu seront ajoutés dynamiquement ici -->
+        </section>
+
+        <section id="reviews" class="reviews">
+            <h2>Avis</h2>
+            <div id="reviews-list">
+                <!-- Les avis seront ajoutés dynamiquement ici -->
+            </div>
+        </section>
+
+        <section id="add-review" class="add-review" style="display: none;">
+            <h2>Ajouter un avis</h2>
+            <form id="review-form" class="form">
+                <div class="form-group">
+                    <label for="review-text">Votre avis:</label>
+                    <textarea id="review-text" name="review-text" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Publier l'avis</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>HBNB &copy; 2024 - Tous droits réservés</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html> 
