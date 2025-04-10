@@ -186,6 +186,15 @@ function displayReviews(reviews) {
 document.addEventListener('DOMContentLoaded', function() {
     const reviewForm = document.querySelector('.add-review-form');
     const errorMessage = document.querySelector('.error-message');
+    const placeIdInput = document.getElementById('place-id');
+
+    // Récupérer l'ID de l'appartement depuis l'URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const placeId = urlParams.get('place_id');
+    
+    if (placeId && placeIdInput) {
+        placeIdInput.value = placeId;
+    }
 
     if (reviewForm) {
         reviewForm.addEventListener('submit', function(e) {
@@ -193,6 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             const rating = document.querySelector('input[name="rating"]:checked');
             const reviewText = document.querySelector('textarea[name="review"]').value.trim();
+            const placeId = placeIdInput.value;
 
             if (!rating) {
                 errorMessage.textContent = 'Veuillez sélectionner une note';
@@ -208,11 +218,33 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Ici, vous pouvez ajouter le code pour envoyer les données au serveur
             // Par exemple, en utilisant fetch() pour faire une requête POST
+            const reviewData = {
+                place_id: placeId,
+                rating: rating.value,
+                text: reviewText,
+                user_id: 'Utilisateur', // À remplacer par l'ID réel de l'utilisateur connecté
+                date: new Date().toLocaleDateString()
+            };
+
+            // Ajouter l'avis à la liste des avis existants
+            const reviewsList = document.getElementById('reviews-list');
+            if (reviewsList) {
+                const reviewElement = document.createElement('div');
+                reviewElement.className = 'review-card';
+                reviewElement.innerHTML = `
+                    <div class="review-header">
+                        <span class="review-rating">${'★'.repeat(rating.value)}${'☆'.repeat(5-rating.value)}</span>
+                        <span class="review-date">${reviewData.date}</span>
+                    </div>
+                    <p class="review-text">${reviewText}</p>
+                    <p class="review-author">Par: ${reviewData.user_id}</p>
+                `;
+                reviewsList.insertBefore(reviewElement, reviewsList.firstChild);
+            }
 
             // Simulation d'envoi réussi
             alert('Votre avis a été publié avec succès !');
-            reviewForm.reset();
-            errorMessage.style.display = 'none';
+            window.location.href = `place.html?id=${placeId}`;
         });
     }
 });
@@ -375,6 +407,9 @@ function loadPlaceDetails(placeId) {
                 <ul>
                     ${place.amenities.map(amenity => `<li>${amenity}</li>`).join('')}
                 </ul>
+            </div>
+            <div class="add-review-button-container">
+                <a href="add_review.html?place_id=${placeId}" class="btn">Ajouter un avis</a>
             </div>
         </div>
     `;
